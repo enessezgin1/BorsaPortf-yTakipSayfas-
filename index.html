@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portföyüm | Borsa Takip</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">KİŞİSEL BORSA TAKİP EKRANI</p>
+          <h1>Portföyüm</h1>
+          <p class="subtitle">Hisselerini ekle, alış maliyetini gör ve güncel fiyatla kâr/zararını takip et.</p>
+        </div>
+      </header>
+
+      <section class="summary" aria-label="Portföy özeti">
+        <article><span>Toplam maliyet</span><strong id="total-cost">₺0,00</strong></article>
+        <article><span>Güncel değer</span><strong id="total-value">₺0,00</strong></article>
+        <article><span>Toplam sonuç</span><strong id="total-profit">₺0,00</strong></article>
+      </section>
+
+      <section class="add-panel">
+        <div>
+          <h2>Yeni hisse ekle</h2>
+          <p>BIST kodunu yaz: THYAO, ASELS, TUPRS gibi.</p>
+        </div>
+        <form id="stock-form">
+          <label>Hisse kodu<input id="symbol" placeholder="THYAO" maxlength="10" required /></label>
+          <label>Alış adedi<input id="quantity" type="number" min="1" step="1" placeholder="100" required /></label>
+          <label>Alış fiyatı (₺)<input id="buy-price" type="number" min="0.01" step="0.01" placeholder="250,00" required /></label>
+          <label>Alış tarihi<input id="buy-date" type="date" required /></label>
+          <label>Son fiyat (₺)<input id="current-price-input" type="number" min="0.01" step="0.01" placeholder="275,00" required /></label>
+          <button class="primary-button" type="submit">Portföye ekle</button>
+        </form>
+        <p id="form-message" class="form-message" aria-live="polite"></p>
+      </section>
+
+      <section class="portfolio-section">
+        <div class="section-heading"><h2>Hisselerim</h2><p id="last-updated">Son fiyatları elle güncelleyebilirsin.</p></div>
+        <div id="portfolio-list" class="portfolio-list"></div>
+      </section>
+
+      <p class="note">Son fiyatları kendin girersin. Kâr/zarar hesabı girdiğin son fiyata göre yapılır.</p>
+    </main>
+    <template id="stock-card-template">
+      <article class="stock-card">
+        <div class="stock-title"><div><h3 class="stock-symbol"></h3><p class="stock-name">Borsa İstanbul</p></div><button class="delete-button" title="Hisseyi sil">Sil</button></div>
+        <div class="metrics">
+          <div><span>Alış</span><strong class="buy-info"></strong></div>
+          <div><span>Alış tarihi</span><strong class="buy-date-info">—</strong></div>
+          <div><span>Son fiyat</span><strong class="current-price">Yükleniyor…</strong></div>
+          <div><span>Kâr / zarar</span><strong class="profit-loss">—</strong></div>
+        </div>
+        <p class="card-status"></p>
+        <form class="price-update-form">
+          <label>Yeni son fiyat (₺)<input class="price-update-input" type="number" min="0.01" step="0.01" placeholder="Yeni fiyat" required /></label>
+          <button class="update-price-button" type="submit">Fiyatı güncelle</button>
+        </form>
+      </article>
+    </template>
+    <script src="app.js"></script>
+  </body>
+</html>
